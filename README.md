@@ -22,7 +22,7 @@ npm install
 <br />
 
 ## Usage:
-<br />
+<br /> 
 
 To start a local server with live-reload and make changes to the custom theme:
 ```
