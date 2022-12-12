@@ -1,0 +1,42 @@
+{
+  "name": "cookiemunch",
+  "version": "1.3.11",
+  "description": "A simple, customizable, minimal setup cookie plugin that allows your users to select which cookies to accept or decline.",
+  "scripts": {
+    "custom": "parcel serve/src_custom.html",
+    "default": "parcel serve/src_default.html",
+    "element": "parcel src_element/cookie_munch_element_demo.html",
+    "build": "node scripts/build_task.js",
+    "dist": "node scripts/test_dist.js"
+  },
+  "author": "Ian Dunkerley",
+  "license": "MIT",
+  "homepage": "https://cookiemunch.dunks1980.com/",
+  "keywords": [
+    "cookie",
+    "cookies",
+    "popup",
+    "plugin",
+    "Cookiemunch",
+    "dunks1980"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Dunks1980/Cookiemunch"
+  },
+  "bugs": {
+    "url": "https://github.com/Dunks1980/Cookiemunch/issues"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.8.6",
+    "dotenv": "^8.2.0",
+    "parcel-bundler": "^1.12.4",
+    "postcss": "^8.2.7",
+    "sass": "^1.32.8",
+    "static-server": "^2.2.1"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- This file is for development only -->
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>default | Cookiemunch</title>
+  <link rel="icon" href="/favicon.ico">
+  <!-- <link rel="stylesheet" href="/cookiemunch.min.css"> -->
+  <!-- <link rel="stylesheet" href="/cookiemunch_flat_light.min.css"> -->
+  <link id="theme-link1" rel="stylesheet" type="text/css" href="../src_default/scss/cookiemunch.scss" media="print">
+  <link id="theme-link2" rel="stylesheet" type="text/css" href="../src_default/scss/cookiemunch_flat_light.scss" media="print">
+  <link id="theme-link3" rel="stylesheet" type="text/css" href="../src_default/scss/cookiemunch_flat_dark.scss" media="print">
+  <link id="theme-link" rel="stylesheet" type="text/css">
+
+  <script src="../src_default/js/cookiemunch.js"></script>
+  <style>
+    body {
+      background: #000;
+      color: #fff;
+    }
+    .code-text {
+      text-align: center;
+      font-size: 14px;
+      font-family: Lucida Console, Lucida Sans Typewriter, monaco, Bitstream Vera Sans Mono, monospace;
+    }
+    .buttons {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 30px;
+      justify-content: center;
+    }
+    .example-button {
+      display: block;
+      margin: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <img id="image-link1" src="../src_default/images/cookiemunch.svg" alt="hidden" width="0" height="0">
+  <img id="image-link2" src="../src_default/images/cookiemunch_flat_light.svg" alt="hidden" width="0" height="0">
+  <img id="image-link3" src="../src_default/images/cookiemunch_flat_dark.svg" alt="hidden" width="0" height="0">
+
+  <div class="buttons">
+    <button class="example-button" onclick="cookiemunch_toggle_popup();">Toggle popup</button>
+    <button class="example-button" onclick="cookiemunch_remove_all_cookies();">Remove all cookies</button>
+    <button class="example-button" onclick="changeTheme();">Change theme</button>
+  </div>
+
+  <pre class="code-text" id="message-log"
+  style="margin-bottom: 10px !important;">Change 🍪 settings to update this view!</pre>
+
+  <script>
+    var themelink;
+    var dark_style = 'background: #101010; color: #fff;';
+    var light_style = 'background: #fff; color: #000;';
+
+    var theme1 = document.querySelector('#theme-link1').getAttribute('href');
+    var theme2 = document.querySelector('#theme-link2').getAttribute('href');
+    var theme3 = document.querySelector('#theme-link3').getAttribute('href');
+
+    document.querySelector('#theme-link').setAttribute('href', theme1);
+
+    var image1 = document.querySelector('#image-link1').getAttribute('src');
+    var image2 = document.querySelector('#image-link2').getAttribute('src');
+    var image3 = document.querySelector('#image-link3').getAttribute('src');
+
+    function changeTheme() {
+      themelink = document.getElementById('theme-link');
+      if (themelink.getAttribute('href') === theme1) {
+        themelink.href = theme2;
+        document.body.style = light_style;
+        cookiemunch_options.settings.cookie_image = image2;
+        cookiemunch(cookiemunch_options);
+      } else if (themelink.getAttribute('href') === theme2) {
+        themelink.href = theme3;
+        document.body.style = dark_style;
+        cookiemunch_options.settings.cookie_image = image3;
+        cookiemunch(cookiemunch_options);
+      } else {
+        themelink.href = theme1;
+        document.body.style = light_style;
+        cookiemunch_options.settings.cookie_image = image1;
+        cookiemunch(cookiemunch_options);
+      }
+    }
+
+    var cookiemunch_options = {
+      settings: {
+        reload: false,
+        required: true,
+        hide_icon: false,
+        cookies_to_exclude: [],
+        keep_all_cookies: false,
+        first_visit_checked: true,
+        start_dropdown_closed: false,
+        check_switch_icons: true,
+        cookies_duration: 365,
+        cookies_secure: true,
+        cookie_title: 'Cookies settings',
+        cookie_optional: 'Optional',
+        cookie_required: 'Required',
+        cookie_accept_label: 'Allow Cookies:',
+        cookie_required_label: 'These Cookies are required in order for the site to function.',
+        cookie_button_none: 'None',
+        cookie_button_required: 'Required',
+        cookie_button_select: 'Select',
+        cookie_button_selected: 'Selected',
+        cookie_button_all: 'All',
+        cookie_button_no: 'No',
+        cookie_button_yes: 'Yes',
+        cookie_button_agree: 'Close'
+      },
+      cookies: [
+        {
+          id: "gtm",
+          //group: "Required",
+          name: "Google tag manager",
+          used_for: "To collect analyitical data and monitor performance.",
+          url_text: "Privacy",
+          url: "https://policies.google.com/privacy",
+          accepted_function: cookiemunch_gtm,
+          declined_function: cookiemunch_gtm_off
+        },
+        {
+          id: "gtm2",
+          group: "Marketing",
+          name: "Google tag manager",
+          used_for: "To collect analyitical data and monitor performance.",
+          url_text: "Privacy",
+          url: "https://policies.google.com/privacy",
+          accepted_function: cookiemunch_gtm,
+          declined_function: cookiemunch_gtm_off
+        },
+        {
+          id: "gtm3",
+          name: "Google tag manager",
+          used_for: "To collect analyitical data and monitor performance.",
+          url_text: "Privacy",
+          url: "https://policies.google.com/privacy",
+          accepted_function: cookiemunch_gtm,
+          declined_function: cookiemunch_gtm_off
+        },
+        {
+          id: "ga",
+          name: "some analylitics",
+          used_for: "Some description of what the cookie is used for.",
+          url_text: "Privacy & Terms",
+          url: "https://dunks1980.com/",
+          accepted_function: cookiemunch_ga,
+          declined_function: cookiemunch_ga_off
+        },
+        {
+          id: "tracker1",
+          name: "some tracker",
+          used_for: "Some description of what the cookie is used for.",
+          url_text: "Privacy & Terms",
+          url: "https://dunks1980.com/",
+          accepted_function: "message += '<div>Accepted some tracker, function fires and 🍪 added!</div>';addmessage();",
+          declined_function: "message += '<div>Declined some tracker, function fires and 🍪 removed!</div>';addmessage();"
+        },
+        {
+          id: "tracker2",
+          group: "Analylitics 3",
+          name: "some tracker",
+          used_for: "Some description of what the cookie is used for.",
+          url_text: "Privacy & Terms",
+          url: "https://dunks1980.com/",
+          accepted_function: "message += '<div>Accepted some tracker, function fires and 🍪 added!</div>';addmessage();",
+          declined_function: "message += '<div>Declined some tracker, function fires and 🍪 removed!</div>';addmessage();"
+        },
+        {
+          id: "tracker3",
+          name: "some tracker",
+          used_for: "Some description of what the cookie is used for.",
+          url_text: "Privacy & Terms",
+          url: "https://dunks1980.com/",
+          accepted_function: "message += '<div>Accepted some tracker, function fires and 🍪 added!</div>';addmessage();",
+          declined_function: "message += '<div>Declined some tracker, function fires and 🍪 removed!</div>';addmessage();"
+        },
+        {
+          id: "tracker4",
+          name: "some tracker",
+          used_for: "Some description of what the cookie is used for.",
+          url_text: "Privacy & Terms",
+          url: "https://dunks1980.com/",
+          accepted_function: "message += '<div>Accepted some tracker, function fires and 🍪 added!</div>';addmessage();",
+          declined_function: "message += '<div>Declined some tracker, function fires and 🍪 removed!</div>';addmessage();"
+        }
+      ],
+      required_cookies: [
+        {
+          name: "Cloudflare",
+          used_for: "Cookie is set by Cloudflare to speed up their load times and for threat defense services. It is does not collect or share user identification information.",
+          url_text: "Privacy policy",
+          url: "https://www.cloudflare.com/en-gb/privacypolicy/"
+        },
+        {
+          name: "Cookiemunch",
+          used_for: "Cookies are set by Cookiemunch to remeber users cookie preferences. It does not collect or share user identification information.",
+          url_text: "More infomation",
+          url: "https://cookiemunch.dunks1980.com/"
+        },
+        {
+          name: "Cookiemunch",
+          used_for: "Cookies are set by Cookiemunch to remeber users cookie preferences. It does not collect or share user identification information.",
+          url_text: "More infomation",
+          url: "https://cookiemunch.dunks1980.com/"
+        }
+      ],
+    };
+
+    //changeTheme();
+    cookiemunch(cookiemunch_options, false, function() {
+      console.log("this is the callback");
+    });
+    //cookiemunch(cookiemunch_options);
+
+
+    var message_el = document.getElementById("message-log");
+    var message = '';
+
+    function addmessage() {
+      setTimeout(function () {
+        message_el.innerHTML = '';
+      }, 0);
+      setTimeout(function () {
+        message_el.innerHTML = message;
+      }, 500);
+      setTimeout(function () {
+        message = '';
+      }, 1000);
+
+    }
+
+    function cookiemunch_gtm() {
+      // window['ga-disable-G-5WC53Z2SLN'] = false;
+      // window.dataLayer = window.dataLayer || [];
+      // function gtag() {
+      //     dataLayer.push(arguments);
+      // }
+      // gtag('js', new Date());
+      // gtag('config', 'G-5WC53Z2SLN');
+      message += '<div>Accepted Google tag manager, function fires and 🍪 added!</div>';
+      addmessage();
+    }
+
+    function cookiemunch_gtm_off() {
+      // window['ga-disable-G-5WC53Z2SLN'] = true;
+      message += '<div>Declined Google tag manager, function fires and 🍪 removed!</div>';
+      addmessage();
+    }
+
+    function cookiemunch_ga() {
+      message += '<div>Accepted some analylitics, function fires and 🍪 added!</div>';
+      addmessage();
+    }
+
+    function cookiemunch_ga_off() {
+      message += '<div>Declined some analylitics, function fires and 🍪 removed!</div>';
+      addmessage();
+    }
+
+  </script>
+
+</body>
+
+</html>
+

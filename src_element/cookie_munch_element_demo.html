@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Cookiemunch custom element</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes" />
+  <style>
+     body {
+      background-color: #FFF;
+      color: #000;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      padding: 0 0 0 0;
+      margin: 0 0 0 0;
+      box-sizing: border-box;
+      overflow-x: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    #message-log {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    #theme-change {
+      margin: 1rem auto;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div id="message-log"></div>
+  <button id="theme-change">Change Theme</button>
+
+
+  <!-- Light & Darks themes (replace href above) --> 
+  <!-- https://unpkg.com/@dunks1980/cookiemunch/cookiemunch_flat_light.min.css -->
+  <!-- https://unpkg.com/@dunks1980/cookiemunch/cookiemunch_flat_dark.min.css --> 
+  <cookie-munch css-file="https://unpkg.com/@dunks1980/cookiemunch/cookiemunch.min.css"></cookie-munch>
+  <script src="cookie_munch_element.js"></script>
+  
+
+  <!-- <script src="../dist/cookie_munch_element.min.js"></script> -->
+  <!-- <script src="https://unpkg.com/@dunks1980/cookiemunch/cookie_munch_element.min.js"></script> -->
+
+  <script src="cookie_munch_settings.js" defer></script>
+
+</body>
+
+</html>
